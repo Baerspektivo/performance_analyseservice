@@ -1,0 +1,25 @@
+import { Injectable } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
+import { map, firstValueFrom, Observable } from 'rxjs';
+import { ApiProperty } from '@nestjs/swagger';
+
+@Injectable()
+export class PageSpeedService {
+  constructor(private httpService: HttpService) {}
+
+  async runPageSpeedTest(url: string): Promise<any> {
+    const API_KEY = 'AIzaSyCvBGrAmStuH5JJXnp2MKZanCjLM5UCLQ8';
+    const response$ = this.httpService
+      .get(
+        `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${url}&key=${API_KEY}`,
+      )
+      .pipe(map((response) => response.data));
+    const data = await firstValueFrom(response$);
+    return data;
+  }
+
+  @ApiProperty()
+  async getPageSpeedData(url: string): Promise<Observable<any>> {
+    return this.runPageSpeedTest(url);
+  }
+}
