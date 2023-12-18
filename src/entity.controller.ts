@@ -1,12 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
-import { database } from './database.service';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Database } from './database.service';
+import { Audit } from './audit.entity';
 
-@Controller('entity')
-export class EntityController {
-  constructor(private readonly database: database) {}
+@Controller('audit')
+export class AuditController {
+  constructor(private readonly databaseService: Database) {}
 
   @Get()
-  async findAll(): Promise<EntityController[]> {
-    return this.database.findAll();
+  async findAll(): Promise<Audit[]> {
+    return this.databaseService.findAll();
+  }
+
+  @Post()
+  async create(@Body() audit: Audit): Promise<Audit> {
+    this.databaseService.create(audit);
   }
 }
