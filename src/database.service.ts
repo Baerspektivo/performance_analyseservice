@@ -13,7 +13,16 @@ export class Database {
   async findAll(): Promise<Audit[]> {
     return this.auditRepository.find();
   }
+  async findOne(customerID: number): Promise<Audit> {
+    return this.auditRepository.findOne(customerID);
+  }
   async create(audit: Audit): Promise<Audit> {
     return this.auditRepository.save(audit);
+  }
+  async update(audit: Audit): Promise<Audit> {
+    return this.auditRepository.save(audit);
+  }
+  async delete(audit: Audit): Promise<void> {
+    await this.auditRepository.delete(audit);
   }
 }
