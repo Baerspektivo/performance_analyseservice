@@ -7,6 +7,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class PageSpeedService {
   constructor(private httpService: HttpService) {}
 
+  //#region connection to google api with api key
   @ApiProperty()
   async runPageSpeedTest(url: string): Promise<any> {
     const API_KEY = 'AIzaSyCvBGrAmStuH5JJXnp2MKZanCjLM5UCLQ8';
@@ -18,9 +19,12 @@ export class PageSpeedService {
     const data = await firstValueFrom(response$);
     return data;
   }
+  //#
 
+  //#region sends the url to the api
   @ApiProperty()
   async getPageSpeedData(url: string): Promise<any> {
     return this.runPageSpeedTest(url);
   }
+  //#endregion
 }

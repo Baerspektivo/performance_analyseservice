@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 import { Database } from './database.service';
 import { Audit } from './audit.entity';
 import { PageSpeedService } from './pagespeed.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiProperty, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('audit')
 @Controller('audit')
@@ -12,11 +12,13 @@ export class AuditController {
     private readonly pageSpeedService: PageSpeedService, // Inject the PageSpeed service
   ) {}
 
+  @ApiProperty()
   @Get()
   async findAll(): Promise<Audit[]> {
     return this.databaseService.findAll();
   }
 
+  @ApiProperty()
   @Post()
   async create(@Body() audit: Audit): Promise<Audit> {
     const pageSpeedData = await this.pageSpeedService.getPageSpeedData(

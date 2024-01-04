@@ -14,7 +14,7 @@ export class Database {
     return this.auditRepository.find();
   }
   async findOne(customerID: number): Promise<Audit> {
-    return this.auditRepository.findOne(customerID);
+    return this.auditRepository.findOne({ where: { customerID } });
   }
   async create(audit: Audit): Promise<Audit> {
     return this.auditRepository.save(audit);
