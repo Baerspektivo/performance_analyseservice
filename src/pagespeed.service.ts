@@ -2,15 +2,19 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { map, firstValueFrom } from 'rxjs';
 import { ApiProperty } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class PageSpeedService {
-  constructor(private httpService: HttpService) {}
+  constructor(
+    private httpService: HttpService,
+    configService: ConfigService,
+  ) {}
 
   //#region connection to google api with api key
   @ApiProperty()
   async runPageSpeedTest(url: string): Promise<any> {
-    const API_KEY = 'AIzaSyCvBGrAmStuH5JJXnp2MKZanCjLM5UCLQ8';
+    const API_KEY = this.configService.get<string>('API_KEY');
     const response$ = this.httpService
       .get(
         `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${url}&key=${API_KEY}`,
