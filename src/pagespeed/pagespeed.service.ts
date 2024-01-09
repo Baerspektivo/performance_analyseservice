@@ -7,8 +7,8 @@ import { ConfigService } from '@nestjs/config';
 @Injectable()
 export class PageSpeedService {
   constructor(
-    private httpService: HttpService,
-    configService: ConfigService,
+    private readonly httpService: HttpService,
+    private readonly configService: ConfigService,
   ) {}
 
   //#region connection to google api with api key
