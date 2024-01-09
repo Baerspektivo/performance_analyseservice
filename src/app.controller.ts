@@ -8,7 +8,7 @@ import {
   Put,
   NotFoundException,
 } from '@nestjs/common';
-import { Audit } from './audit.entity';
+import { Audit } from './audit/entities/audit.entity';
 import { Database } from './database.service';
 import { ApiProperty } from '@nestjs/swagger';
 

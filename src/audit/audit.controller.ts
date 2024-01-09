@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
-import { Database } from './database.service';
-import { Audit } from './audit.entity';
-import { PageSpeedService } from './pagespeed.service';
+import { Database } from '../database.service';
+import { Audit } from './entities/audit.entity';
+import { PageSpeedService } from '../pagespeed/pagespeed.service';
 import { ApiProperty, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('audit')
