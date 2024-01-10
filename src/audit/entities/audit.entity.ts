@@ -88,6 +88,22 @@ export class Audit {
 
   @Column()
   @ApiProperty()
+  usesOptimizedImages: string;
+
+  @Column()
+  @ApiProperty()
+  thirdPartySummary: string;
+
+  @Column()
+  @ApiProperty()
+  modernImageFormats: string;
+
+  @Column()
+  @ApiProperty()
+  usesResponsiveImages: string;
+
+  @Column()
+  @ApiProperty()
   seoCrawl: string;
 
   @Column()
