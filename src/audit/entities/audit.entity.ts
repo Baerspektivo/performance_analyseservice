@@ -1,10 +1,35 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { IsNotEmpty, isEmail } from 'class-validator';
-import * as faker from 'faker';
+import { IsNotEmpty, IsEmail } from 'class-validator';
+import { Expose } from 'class-transformer';
+import { faker } from '@faker-js/faker';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 export class Audit {
+  @Column()
+  @ApiProperty()
+  performanceScore: string;
+
+  @Column()
+  @ApiProperty()
+  bootupTime: string;
+
+  @Column()
+  @ApiProperty()
+  duplicatedJavascript: string;
+
+  @Column()
+  @ApiProperty()
+  unusedCssRules: string;
+
+  @Column()
+  @ApiProperty()
+  performanceBudget: string;
+
+  @Column()
+  @ApiProperty()
+  unusedJavascript: string;
+
   @Column()
   @ApiProperty()
   firstContentfulPaint: string;
@@ -23,7 +48,7 @@ export class Audit {
 
   @Column()
   @ApiProperty()
-  unusedCssRules: string;
+  fistmeaningfulPaint: string;
 
   @Column()
   @ApiProperty()
@@ -31,16 +56,60 @@ export class Audit {
 
   @Column()
   @ApiProperty()
+  longtasks: string;
+
+  @Column()
+  @ApiProperty()
+  serverResponseTime: string;
+
+  @Column()
+  @ApiProperty()
+  legacyJavascript: string;
+
+  @Column()
+  @ApiProperty()
+  totalByetWeight: string;
+
+  @Column()
+  @ApiProperty()
+  domSize: string;
+
+  @Column()
+  @ApiProperty()
   usesRelPreload: string;
+
+  @Column()
+  @ApiProperty()
+  largestContentPaintfulPaintElement: string;
 
   @Column()
   @ApiProperty()
   seoMobile: string;
 
   @Column()
+  @ApiProperty()
+  seoCrawl: string;
+
+  @Column()
+  @ApiProperty()
+  seoContent: string;
+
+  @Column()
+  @ApiProperty()
+  bestPracticesGeneral: string;
+
+  @Column()
+  @ApiProperty()
+  unminifiedCss: string;
+
+  @Column()
+  @ApiProperty()
+  unminifiedJavascript: string;
+
+  @Column()
   @ApiProperty({ example: faker.internet.email() })
   @IsNotEmpty()
-  @isEmail()
+  @IsEmail()
   isEmail: string;
 
   @Column()
@@ -56,7 +125,7 @@ export class Audit {
   @ApiProperty()
   customerID: number;
 
-  @Expose
+  @Expose()
   @Column()
   @ApiProperty()
   createdAt: Date;
